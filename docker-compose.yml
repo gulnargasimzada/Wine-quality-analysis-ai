@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  analysis:
+    build: .
+    image: wine-quality-analysis:local
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    command: ["python", "-m", "wine_quality.cli"]
+
+  test:
+    build: .
+    image: wine-quality-analysis:local
+    entrypoint: ["pytest"]
+    command: ["-q"]
+    
